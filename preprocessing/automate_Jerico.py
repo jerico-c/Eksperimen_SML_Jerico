@@ -62,7 +62,6 @@ def run_preprocessing(input_path, output_dir):
     print(f" Preprocessing selesai! Data siap latih disimpan di folder: {output_dir}")
 
 if __name__ == "__main__":
-    # Path disesuaikan dengan posisi file saat dijalankan di pipeline
     run_preprocessing(
         input_path="../credit_risk_dataset.csv", 
         output_dir="dataset_preprocessing"
