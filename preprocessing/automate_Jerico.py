@@ -14,7 +14,7 @@ def run_preprocessing(input_path, output_dir):
     # 1. Load Data
     df = pd.read_csv(input_path)
     
-    # 2. Cleaning Outlier (Sesuai notebook)
+    # 2. Cleaning Outlier
     df_clean = df[(df['person_age'] <= 100) & (df['person_age'].notnull())]
     df_clean = df_clean[(df_clean['person_emp_length'].fillna(0) <= 60)]
     
