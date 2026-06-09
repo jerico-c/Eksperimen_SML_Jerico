@@ -1,0 +1,36 @@
+name: Data Preprocessing Pipeline
+
+on:
+  push:
+    paths:
+      - 'credit_risk_dataset.csv'
+      - 'preprocessing/automate_Jerico.py'
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.7'
+          
+      - name: Install dependencies
+        run: |
+          pip install pandas scikit-learn
+          
+      - name: Run Automation Script
+        run: |
+          cd preprocessing
+          python automate_Jerico.py
+          
+      - name: Commit and Push processed data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add preprocessing/dataset_preprocessing/
+          git commit -m "Auto-update processed dataset via CI" || echo "No changes to commit"
+          git push
